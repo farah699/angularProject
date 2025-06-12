@@ -1,0 +1,23 @@
+{
+  "equipes": [
+    {
+      "id": "1",
+      "nom": "e1",
+      "natif": "Senior"
+     
+    },
+    {
+       "id": "2",
+      "nom": "e2",
+      "natif": "Senior"
+     
+    },
+    {
+     "id": "3",
+      "nom": "e3",
+      "natif": "Jenior"
+    }
+
+  ],
+  "matchs":[]
+}

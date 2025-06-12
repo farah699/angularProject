@@ -1,0 +1,72 @@
+<form [formGroup]="matchsForm" (ngSubmit)="onSubmit()" #matchForm="ngForm">
+  <div *ngIf="errorMessage" class="error show">
+    {{ errorMessage }}
+  </div>
+  <div>
+    <label for="date">Date :</label>
+    <input id="date" type="date" formControlName="date">
+    <div *ngIf="matchsForm.get('date')?.touched || matchsForm.get('date')?.dirty || matchForm.submitted" class="error"
+         [ngClass]="{'show': matchsForm.get('date')?.invalid}">
+      <span *ngIf="matchsForm.get('date')?.errors?.['required']">Ce champ est obligatoire.</span>
+    </div>
+  </div><br>
+
+  <div>
+    <label for="heure">Heure :</label>
+    <input id="heure" type="time" formControlName="heure">
+    <div *ngIf="matchsForm.get('heure')?.touched || matchsForm.get('heure')?.dirty || matchForm.submitted" class="error"
+         [ngClass]="{'show': matchsForm.get('heure')?.invalid}">
+      <span *ngIf="matchsForm.get('heure')?.errors?.['required']">Ce champ est obligatoire.</span>
+    </div>
+  </div><br>
+
+  <div>
+    <label for="lieu">Lieu :</label>
+    <input id="lieu" type="text" formControlName="lieu">
+    <div *ngIf="matchsForm.get('lieu')?.touched || matchsForm.get('lieu')?.dirty || matchForm.submitted" class="error"
+         [ngClass]="{'show': matchsForm.get('lieu')?.invalid}">
+      <span *ngIf="matchsForm.get('lieu')?.errors?.['required']">Ce champ est obligatoire.</span>
+    </div>
+  </div><br>
+
+  <div>
+    <label for="equipeA">Équipe A :</label>
+    <select id="equipeA" formControlName="equipeA">
+      <option value="">Sélectionner une équipe</option>
+      <option *ngFor="let equipe of equipes" [value]="equipe.id">
+        {{ equipe.nom }} - {{ equipe.natif }}
+      </option>
+    </select>
+    <div *ngIf="matchsForm.get('equipeA')?.touched || matchsForm.get('equipeA')?.dirty || matchForm.submitted" class="error"
+         [ngClass]="{'show': matchsForm.get('equipeA')?.invalid}">
+      <span *ngIf="matchsForm.get('equipeA')?.errors?.['required']">Ce champ est obligatoire.</span>
+    </div>
+  </div><br>
+
+  <div>
+    <label for="equipeB">Équipe B :</label>
+    <select id="equipeB" formControlName="equipeB">
+      <option value="">Sélectionner une équipe</option>
+      <option *ngFor="let equipe of equipes" [value]="equipe.id">
+        {{ equipe.nom }} - {{ equipe.natif }}
+      </option>
+    </select>
+    <div *ngIf="matchsForm.get('equipeB')?.touched || matchsForm.get('equipeB')?.dirty || matchForm.submitted" class="error"
+         [ngClass]="{'show': matchsForm.get('equipeB')?.invalid}">
+      <span *ngIf="matchsForm.get('equipeB')?.errors?.['required']">Ce champ est obligatoire.</span>
+    </div>
+  </div><br>
+
+<button type="submit" [disabled]="!isFormFilled()">Soumettre</button></form>
+<h3>Matchs soumis :</h3>
+
+<style>
+  .error {
+    color: red;
+    font-size: 12px;
+    display: none; /* Masqué par défaut */
+  }
+  .error.show {
+    display: block; /* Affiché quand invalide */
+  }
+</style>
